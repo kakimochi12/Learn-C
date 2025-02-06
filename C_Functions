@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+unsigned int gcd(unsigned int x, unsigned int y);
+float abso(float z);
+float sqroot(float n);
+
+int main()
+{
+    unsigned int inp1 = 0;
+    unsigned int inp2 = 0;
+    printf("Enter two numbers to calculate the gcd of both:\n ");
+    scanf("%u %u", &inp1, &inp2);
+    
+    unsigned int result_gcd = gcd(inp1, inp2);
+    printf("%u\n", result_gcd);
+    
+    float inp3 = 0.0;
+    printf("Now I will give you the absolute value of a number:\n ");
+    scanf("%f", &inp3);
+    
+    float result_abso = abso(inp3);
+    printf("%.2f\n", result_abso);
+    
+    float inp4 = 0.0;
+    printf("I will give you the square root of a number:\n ");
+    scanf("%f", &inp4);
+    
+    float result_sqroot = sqroot(inp4);
+    printf("%.2f\n", result_sqroot);
+    
+    return 0;
+    
+}
+
+unsigned int gcd(unsigned x, unsigned y)
+{
+    while (y != 0) {
+        unsigned int temp = y;
+        y = x % y;
+        x = temp;
+    }
+    return x;
+}
+
+float abso(float z)
+{
+    if (z < 0.0)
+    {
+        z = z * -1.0;
+    }
+    return z;
+}
+
+float sqroot(float n)
+{
+    if (n < 0)
+    {
+        return -1.0;
+    }
+    
+    float x = n;  // Initial guess
+    float epsilon = 0.0001f;  // Precision level
+
+    while ((x * x - n) > epsilon || (n - x * x) > epsilon) {
+        x = (x + n / x) / 2.0f;
+    }
+
+    return x;
+    
+}
